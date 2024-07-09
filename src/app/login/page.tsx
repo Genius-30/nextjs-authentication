@@ -25,7 +25,7 @@ function LoginPage() {
         setIsLoading(false);
         toast.success("Login Successful");
 
-        route.push("/profile");
+        route.push("/");
       })
       .catch((error) => {
         setIsLoading(false);
