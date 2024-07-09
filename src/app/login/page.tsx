@@ -90,7 +90,7 @@ function LoginPage() {
             Login
           </button>
           <p className="self-center">
-            Don't have an account?{" "}
+            Don&rsquo;t have an account?{" "}
             <Link href={"/signup"} className="text-blue-500">
               Signup
             </Link>
