@@ -6,17 +6,21 @@ import { NextRequest, NextResponse } from "next/server";
 connectDB();
 
 export async function GET(req: NextRequest) {
-  const userId = await getDataFromToken(req);
+  try {
+    const userId = await getDataFromToken(req);
 
-  const user = await User.findById(userId).select("-password");
+    const user = await User.findById(userId).select("-password");
 
-  if (!user) {
-    return NextResponse.json({ message: "User not found" }, { status: 404 });
+    if (!user) {
+      return NextResponse.json({ message: "User not found" }, { status: 404 });
+    }
+
+    return NextResponse.json({
+      message: "User fetched successfully",
+      success: true,
+      user: user,
+    });
+  } catch (error: any) {
+    return NextResponse.json({ message: error.message }, { status: 500 });
   }
-
-  return NextResponse.json({
-    message: "User fetched successfully",
-    success: true,
-    user: user,
-  });
 }
